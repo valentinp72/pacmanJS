@@ -3,7 +3,7 @@ const MAP_H = 18;
 const MAP_W = 25;
 const HEIGHT   = MAP_H * SIZE_DOT;
 const WIDTH    = MAP_W * SIZE_DOT;
-
+const SPEED = 0.15;
 
 const MAP_LVL_1 = [
 	[1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1],
@@ -45,7 +45,7 @@ function drawMap(map){
 
 function setup(){
 	createCanvas(WIDTH, HEIGHT);
-	frameRate(8);
+	frameRate(30);
 	angleMode(DEGREES);
 
 
@@ -66,31 +66,33 @@ function draw(){
 function PacMan(){
 	this.x = 2;
 	this.y = 0;
-	this.yVel = 1;
+	this.yVel = SPEED;
 	this.xVel = 0;
 	this.angle = 30;
-	this.angleDir = 50;
+	this.angleDir = 25;
 
 	this.checkPlayer = function(){
 		if(keyIsDown(UP_ARROW) && this.isValidPos(this.x, this.y - 1)){
-			this.yVel = -1;
+			this.yVel = - SPEED;
 			this.xVel = 0;
 		}
 		else if(keyIsDown(DOWN_ARROW) && this.isValidPos(this.x, this.y + 1)){
-			this.yVel = 1;
+			this.yVel = SPEED;
 			this.xVel = 0;
 		}
 		else if(keyIsDown(LEFT_ARROW) && this.isValidPos(this.x - 1, this.y)){
 			this.yVel = 0;
-			this.xVel = -1;
+			this.xVel = - SPEED;
 		}
 		else if(keyIsDown(RIGHT_ARROW) && this.isValidPos(this.x + 1, this.y)){
 			this.yVel = 0;
-			this.xVel = 1;
+			this.xVel = SPEED;
 		}
 	}
 
 	this.isValidPos = function(x, y){
+		x = round(x);
+		y = round(y);
 		if(x >= 0 && x < MAP_W && y >= 0 && y < MAP_H && map[y][x] == 0){
 			return true;
 		}
