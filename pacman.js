@@ -45,7 +45,6 @@ function drawMap(map){
 
 function setup(){
 	createCanvas(WIDTH, HEIGHT);
-	//noStroke();
 	frameRate(8);
 	angleMode(DEGREES);
 
@@ -65,27 +64,27 @@ function draw(){
 }
 
 function PacMan(){
-	this.x = 1;
-	this.y = 2;
-	this.yVel = 0;
+	this.x = 2;
+	this.y = 0;
+	this.yVel = 1;
 	this.xVel = 0;
 	this.angle = 30;
 	this.angleDir = 50;
 
 	this.checkPlayer = function(){
-		if(keyIsDown(UP_ARROW)){
+		if(keyIsDown(UP_ARROW) && this.isValidPos(this.x, this.y - 1)){
 			this.yVel = -1;
 			this.xVel = 0;
 		}
-		else if(keyIsDown(DOWN_ARROW)){
+		else if(keyIsDown(DOWN_ARROW) && this.isValidPos(this.x, this.y + 1)){
 			this.yVel = 1;
 			this.xVel = 0;
 		}
-		else if(keyIsDown(LEFT_ARROW)){
+		else if(keyIsDown(LEFT_ARROW) && this.isValidPos(this.x - 1, this.y)){
 			this.yVel = 0;
 			this.xVel = -1;
 		}
-		else if(keyIsDown(RIGHT_ARROW)){
+		else if(keyIsDown(RIGHT_ARROW) && this.isValidPos(this.x + 1, this.y)){
 			this.yVel = 0;
 			this.xVel = 1;
 		}
