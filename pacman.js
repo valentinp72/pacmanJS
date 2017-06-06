@@ -3,7 +3,7 @@ const MAP_H = 18;
 const MAP_W = 25;
 const HEIGHT   = MAP_H * SIZE_DOT;
 const WIDTH    = MAP_W * SIZE_DOT;
-const SPEED = 0.15;
+const SPEED = 0.1;
 
 const MAP_LVL_1 = [
 	[1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1],
@@ -75,18 +75,30 @@ function PacMan(){
 		if(keyIsDown(UP_ARROW) && this.isValidPos(this.x, this.y - 1)){
 			this.yVel = - SPEED;
 			this.xVel = 0;
+
+			this.x = round(this.x);
+			this.y = round(this.y);
 		}
 		else if(keyIsDown(DOWN_ARROW) && this.isValidPos(this.x, this.y + 1)){
 			this.yVel = SPEED;
 			this.xVel = 0;
+
+			this.x = round(this.x);
+			this.y = round(this.y);
 		}
 		else if(keyIsDown(LEFT_ARROW) && this.isValidPos(this.x - 1, this.y)){
 			this.yVel = 0;
 			this.xVel = - SPEED;
+
+			this.x = round(this.x);
+			this.y = round(this.y);
 		}
 		else if(keyIsDown(RIGHT_ARROW) && this.isValidPos(this.x + 1, this.y)){
 			this.yVel = 0;
 			this.xVel = SPEED;
+
+			this.x = round(this.x);
+			this.y = round(this.y);
 		}
 	}
 
@@ -111,6 +123,8 @@ function PacMan(){
 				this.y = nextY;
 			}
 			else {
+				//this.x = round(this.x);
+				//this.y = round(this.y);
 				this.xVel = 0;
 				this.yVel = 0;
 			}
